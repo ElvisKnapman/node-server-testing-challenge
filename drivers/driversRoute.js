@@ -52,4 +52,22 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.delete("/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const result = await Drivers.deleteDriver(id);
+    if (result) {
+      res.status(200).json({ message: "Driver successfully deleted" });
+    } else {
+      res.status(400).json({ message: "Invalid driver ID" });
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      message: "Server encountered error while trying to delete the driver"
+    });
+  }
+});
+
 module.exports = router;
