@@ -58,7 +58,7 @@ router.delete("/:id", async (req, res) => {
   try {
     const result = await Drivers.deleteDriver(id);
     if (result) {
-      res.status(200).json({ message: "Driver successfully deleted" });
+      res.status(200).json(result);
     } else {
       res.status(400).json({ message: "Invalid driver ID" });
     }
