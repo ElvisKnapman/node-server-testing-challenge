@@ -15,8 +15,15 @@ const addDriver = async newDriver => {
   return findById(id);
 };
 
+const deleteDriver = id => {
+  return db("drivers")
+    .del()
+    .where({ id });
+};
+
 module.exports = {
   find,
   findById,
-  addDriver
+  addDriver,
+  deleteDriver
 };
