@@ -10,7 +10,13 @@ const findById = id => {
     .first();
 };
 
+const addDriver = async newDriver => {
+  const [id] = await db("drivers").insert(newDriver, "id");
+  return findById(id);
+};
+
 module.exports = {
   find,
-  findById
+  findById,
+  addDriver
 };
