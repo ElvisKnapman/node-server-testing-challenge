@@ -1,7 +1,7 @@
 const express = require("express");
 
 // routes
-const driverRoutes = require("../drivers/driversRoute.js");
+const driverRoutes = require("../drivers/driversRoutes.js");
 const server = express();
 
 server.use(express.json());
