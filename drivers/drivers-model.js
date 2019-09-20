@@ -1,9 +1,16 @@
 const db = require("../data/db-config.js");
 
-const find = async () => {
-  return await db("drivers");
+const find = () => {
+  return db("drivers");
+};
+
+const findById = id => {
+  return db("drivers")
+    .where({ id })
+    .first();
 };
 
 module.exports = {
-  find
+  find,
+  findById
 };
