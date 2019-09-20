@@ -18,4 +18,38 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const driver = await Drivers.findById(id);
+
+    if (driver) {
+      res.status(200).json(driver);
+    }
+  } catch (err) {
+    console.log(err);
+    res
+      .status(500)
+      .json({ message: "Server encountered error retrieving driver" });
+  }
+});
+
+router.post("/", async (req, res) => {
+  const { body } = req;
+
+  try {
+    const driver = await Drivers.addDriver(body);
+    if (driver) {
+      res.status(201).json(driver);
+    } else {
+      res
+        .status(400)
+        .json({ message: "Could not add driver, please check your data" });
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Server encountered error adding driver" });
+  }
+});
+
 module.exports = router;
